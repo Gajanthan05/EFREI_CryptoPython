@@ -1,11 +1,15 @@
 from cryptography.fernet import Fernet
-from flask import Flask, render_template
+from flask import Flask, render_template_string, render_template, jsonify
+from flask import render_template
+from flask import json
+from urllib.request import urlopen
+import sqlite3
 
-app = Flask(__name__)
+app = Flask(name)
 
 @app.route('/')
 def hello_world():
-    return render_template('hello.html')  # Assurez-vous que ce fichier existe dans /templates
+    return render_template('hello.html') #Commit
 
 key = Fernet.generate_key()
 f = Fernet(key)
@@ -16,5 +20,5 @@ def encryptage(valeur):
     token = f.encrypt(valeur_bytes)  # Encrypt la valeur
     return f"Valeur encryptée : {token.decode()}"  # Retourne le token en str
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if name == "main":
+  app.run(debug=True)
